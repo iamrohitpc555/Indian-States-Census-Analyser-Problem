@@ -5,6 +5,8 @@ import com.stateinformation.com.StateException;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.IOException;
+
 import static org.junit.Assert.assertEquals;
 
 public class StateTestCases {
@@ -13,11 +15,9 @@ public class StateTestCases {
     public void check_StateCensusDataFile_ReturnHowMuchRecord() throws StateException {
 
         StateAnalyser stateAnalyser = new StateAnalyser();
-        Assert.assertEquals( 37,
+        Assert.assertEquals(37,
                 stateAnalyser.openCSVBuilder("/Users/rohitchaudhari/IdeaProjects/Indian States Census Analyser/src/main/java/StateCensusData.csv"));
     }
-
-
 
 
     @Test
@@ -25,9 +25,9 @@ public class StateTestCases {
 
         StateAnalyser stateAnalyser = new StateAnalyser();
         try {
-            assertEquals(37,stateAnalyser.openCSVBuilder("/Users/rohitchaudhari/IdeaProjects/Indian States Census Analyser/src/main/java/StateCensusData1.csv"));
+            assertEquals(37, stateAnalyser.openCSVBuilder("/Users/rohitchaudhari/IdeaProjects/Indian States Census Analyser/src/main/java/StateCensusData1.csv"));
         } catch (StateException e) {
-            System.out.println("Exception is : "+ e.getMessage());
+            System.out.println("Exception is : " + e.getMessage());
             assertEquals(StateException.ExceptionType.NO_SUCH_FILE, e.type);
         }
     }
@@ -37,9 +37,9 @@ public class StateTestCases {
 
         StateAnalyser stateAnalyser = new StateAnalyser();
         try {
-            assertEquals(37,stateAnalyser.openCSVBuilder("/Users/rohitchaudhari/IdeaProjects/Indian States Census Analyser/src/main/java/StateCensusData.pdf"));
+            assertEquals(37, stateAnalyser.openCSVBuilder("/Users/rohitchaudhari/IdeaProjects/Indian States Census Analyser/src/main/java/StateCensusData.pdf"));
         } catch (StateException e) {
-            System.out.println("Exception is : "+ e.getMessage());
+            System.out.println("Exception is : " + e.getMessage());
             assertEquals(StateException.ExceptionType.NO_SUCH_FILE, e.type);
         }
     }
@@ -49,9 +49,9 @@ public class StateTestCases {
 
         StateAnalyser stateAnalyser = new StateAnalyser();
         try {
-            assertEquals(37,stateAnalyser.openCSVBuilder("/Users/rohitchaudhari/IdeaProjects/Indian States Census Analyser/src/main/java/StateCensusData.csv"));
+            assertEquals(37, stateAnalyser.openCSVBuilder("/Users/rohitchaudhari/IdeaProjects/Indian States Census Analyser/src/main/java/StateCensusData.csv"));
         } catch (StateException e) {
-            System.out.println("Exception is : "+ e.getMessage());
+            System.out.println("Exception is : " + e.getMessage());
             assertEquals(StateException.ExceptionType.SOME_OTHER_FILE_ERROR, e.type);
         }
     }
@@ -61,10 +61,24 @@ public class StateTestCases {
 
         StateAnalyser stateAnalyser = new StateAnalyser();
         try {
-            assertEquals(37,stateAnalyser.openCSVBuilder("/Users/rohitchaudhari/IdeaProjects/Indian States Census Analyser/src/main/java/StateCensusData.csv"));
+            assertEquals(37, stateAnalyser.openCSVBuilder("/Users/rohitchaudhari/IdeaProjects/Indian States Census Analyser/src/main/java/StateCensusData.csv"));
         } catch (StateException e) {
-            System.out.println("Exception is : "+ e.getMessage());
+            System.out.println("Exception is : " + e.getMessage());
             assertEquals(StateException.ExceptionType.SOME_OTHER_FILE_ERROR, e.type);
+        }
+    }
+
+    @Test
+    public void sortcsvFile_JsonFile() {
+
+        StateAnalyser stateAnalyser = new StateAnalyser();
+        try {
+            Assert.assertEquals(37, stateAnalyser.SortCSvFile("/Users/rohitchaudhari/IdeaProjects/Indian States Census Analyser/src/main/java/StateCensusData.csv"));
+        } catch (StateException e) {
+            System.out.println("Exception is : " + e.getMessage());
+            Assert.assertEquals(StateException.ExceptionType.SOME_OTHER_FILE_ERROR, e.type);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
