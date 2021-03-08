@@ -13,7 +13,8 @@ public class StateTestCases {
     public void check_StateCensusDataFile_ReturnHowMuchRecord() throws StateException {
 
         StateAnalyser stateAnalyser = new StateAnalyser();
-        Assert.assertEquals( 37, stateAnalyser.openCSVBuilder("/Users/rohitchaudhari/IdeaProjects/Indian States Census Analyser/src/main/java/StateCensusData.csv"));
+        Assert.assertEquals( 37,
+                stateAnalyser.openCSVBuilder("/Users/rohitchaudhari/IdeaProjects/Indian States Census Analyser/src/main/java/StateCensusData.csv"));
     }
 
 
